@@ -119,6 +119,7 @@
               layout="prev, pager, next"
               @current-change="handleCurrentChange"
               :total="total"
+              :current-page="page"
               :page-size="page_size"
               prev-text="上一页"
               next-text="下一页">
