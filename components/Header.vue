@@ -21,14 +21,14 @@
            <!-- <a href="#" class="personal"><span class="personalIco"></span>消息</a>
             <a href="#" class="personal">购物车</a>
             <a href="#" class="myInfo"><img src="/static/img/asset-myImg.jpg" alt="">个人中心</a>-->
-            <a href="http://ucenter.xuecheng.com/" class="personal" target="_blank">我的学习</a>
+            <a href="http://ucenter.zhou.com/" class="personal" target="_blank">我的学习</a>
             <a href="javascript:;" @click="logout" v-if="logined == true">退出</a>
             <a href="javascript:;" @click="showlogin" v-if="logined == false">登陆&nbsp;|&nbsp;注册</a>
             <el-dialog title="登陆|注册" :visible.sync="LoginFormVisible">
               <login-form></login-form>
             </el-dialog>
-            <a href="http://teacher.xuecheng.com/" class="personal" target="_blank">教学提供方</a>
-            <a href="http://system.xuecheng.com/" class="personal" target="_blank">系统后台</a>
+            <a href="http://teacher.zhou.com/" class="personal" target="_blank">教学提供方</a>
+            <a href="http://system.zhou.com/" class="personal" target="_blank">系统后台</a>
           </div>
           <div class="starch">
             <div><input type="text" class="input-search" v-model="keyword" @keyup.enter="search"  placeholder="输入查询关键词"></div>
@@ -75,7 +75,7 @@
         this.$confirm('确认退出吗?', '提示', {
         }).then(() => {
           //跳转到统一登陆
-          window.location = "http://ucenter.xuecheng.com/#/logout"
+          window.location = "http://ucenter.zhou.com/#/logout"
         }).catch(() => {
 
         });

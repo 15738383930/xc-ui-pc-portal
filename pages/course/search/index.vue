@@ -3,7 +3,7 @@
     <div class="learing-list">
       <div class="list-box">
         <ul>
-          <li>关键字ss：</li>
+          <li>关键字：</li>
           <ol>
             <li>{{keyword}}
 
@@ -18,10 +18,10 @@
           <li v-if="mt!=''"><nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&grade='+grade">全部</nuxt-link></li>
           <li class="all" v-else>全部</li>
           <ol>
-            <li v-for="category_v in first_category">
-              <nuxt-link  class="title-link all" :to="'/course/search?keyword='+keyword+'&mt=' + category_v.id" v-if="category_v.id == mt">{{category_v.name}}</nuxt-link>
-              <nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt=' + category_v.id" v-else>{{category_v.name}}</nuxt-link>
-            </li>
+          <li v-for="category_v in first_category">
+            <nuxt-link  class="title-link all" :to="'/course/search?keyword='+keyword+'&mt=' + category_v.id" v-if="category_v.id == mt">{{category_v.name}}</nuxt-link>
+            <nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt=' + category_v.id" v-else>{{category_v.name}}</nuxt-link>
+          </li>
           </ol>
           <!--<ol>
             <li>数据分析</li>
@@ -38,8 +38,8 @@
               <nuxt-link  class="title-link all" :to="'/course/search?keyword='+keyword+'&mt='+mt+'&st=' + category_v.id" v-if="category_v.id == st">{{category_v.name}}</nuxt-link>
               <nuxt-link  class="title-link" :to="'/course/search?keyword='+keyword+'&mt='+mt+'&st=' + category_v.id" v-else>{{category_v.name}}</nuxt-link>
             </li>
-            <!-- <li>大数据</li>
-             <li>云计算</li>-->
+           <!-- <li>大数据</li>
+            <li>云计算</li>-->
           </ol>
           <!--<a href="#" class="more">更多 ∨</a>-->
         </ul>
@@ -71,12 +71,12 @@
                 <!--<li class="active"><a href="#">推荐</a></li>
                 <li><a href="#">最新</a></li>
                 <li><a href="#">热评</a></li>-->
-                <!-- <div class="page navbar-right">
-                   <a href="#" class="prev">
-                     < </a>
-                   <span class="">1/28</span>
-                   <a href="#" class="next"> ></a>
-                 </div>-->
+               <!-- <div class="page navbar-right">
+                  <a href="#" class="prev">
+                    < </a>
+                  <span class="">1/28</span>
+                  <a href="#" class="next"> ></a>
+                </div>-->
               </ul>
             </div>
             <div class="tab-content">
@@ -93,7 +93,6 @@
                 </div>-->
                 <div class="recom-item" v-for="(course, index) in courselist">
                   <a :href="'/course/detail/'+course.id+'.html'" target="_blank">
-                    <!--<a href="/course/detail/test.html" target="_blank">-->
                     <div v-if="course.pic">
                       <p><img :src="imgUrl+'/'+course.pic" width="100%" alt=""></p>
                     </div>
@@ -105,7 +104,6 @@
                       <li style="float: left"><span v-if="course.charge == '203001'">免费</span><span v-if="course.charge == '203002'">￥{{course.price | money}}</span>
                         <!-- <em> · </em>-->&nbsp;&nbsp;<!--<em>1125人在学习</em>--></li>
                     </ul>
-                    <!--</a>-->
                   </a>
                 </div>
 
@@ -122,7 +120,6 @@
               @current-change="handleCurrentChange"
               :total="total"
               :page-size="page_size"
-              :current-page="page"
               prev-text="上一页"
               next-text="下一页">
             </el-pagination>
@@ -199,7 +196,9 @@
       let course_data = await courseApi.search_course(page,2,route.query);
       //查询分类
       let category_data = await courseApi.sysres_category()
-      if (course_data &&　course_data.queryResult ) {
+//      console.log(course_data.queryResult.list)
+
+      if (course_data.success) {
         //全部分类
         let category = category_data.category//分部分类
         let first_category = category[0].children//一级分类
